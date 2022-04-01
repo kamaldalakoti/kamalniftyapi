@@ -42,7 +42,14 @@ def home():
             A_close = element['close' ]
             # print(A_fincode , A_close)
             B_close = element2['close' ]
-            performance = str(round((int(A_close - B_close)/(A_close)*100),4))+"%"
+            
+            performance = abs(A_close - B_close)/((A_close+B_close)/2)*100
+            performance = round(performance , 2)
+                
+            if A_close > B_close:
+                performance = "-"+str(performance)+"%"  
+            elif A_close < B_close:
+                performance = str(performance)+"%"  
             # print(performance)
             dictF = { 'fincode' : A_fincode , 'symbol' : A_symbol , 'closing_start': A_close , 'closing_end' : B_close , 'performance' : performance } 
             # print(dictF) 
